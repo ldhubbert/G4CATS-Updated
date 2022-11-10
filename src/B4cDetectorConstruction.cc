@@ -1,11 +1,11 @@
- /// Do not be fooled by the name - This is actually the Compton And Two photon Spectrometer (CATS)
+ /// Compton And Two photon Spectrometer (CATS)
  /// Summer 2022 Vincent Bruening, Mount Allision University Physics, supervised by Dr. David Hornidge
+ /// Modified exampleB4c 
 
 #include "B4cDetectorConstruction.hh"
 #include "B4cCalorimeterSD.hh"
 #include "G4Material.hh"
 #include "G4NistManager.hh"
-
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4Cons.hh"
@@ -17,22 +17,16 @@
 #include "G4PVReplica.hh"
 #include "G4GlobalMagFieldMessenger.hh"
 #include "G4AutoDelete.hh"
-
-
 #include "G4SDManager.hh"
-
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
-
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4ThreadLocal 
 G4GlobalMagFieldMessenger* B4cDetectorConstruction::fMagFieldMessenger = 0; 
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 B4cDetectorConstruction::B4cDetectorConstruction()
  : G4VUserDetectorConstruction(),
@@ -41,13 +35,11 @@ B4cDetectorConstruction::B4cDetectorConstruction()
 {
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 B4cDetectorConstruction::~B4cDetectorConstruction()
 { 
 }  
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4VPhysicalVolume* B4cDetectorConstruction::Construct()
 {
@@ -58,7 +50,6 @@ G4VPhysicalVolume* B4cDetectorConstruction::Construct()
   return DefineVolumes();
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void B4cDetectorConstruction::DefineMaterials()
 { 
@@ -109,11 +100,12 @@ G4VPhysicalVolume* B4cDetectorConstruction::DefineVolumes()
                  fCheckOverlaps);  // checking overlaps 
   
   G4double z = 31.75*cm;//31.75
+  G4double w = 40.75*cm;
   G4ThreeVector pos1 = G4ThreeVector(0, 0, 150*cm);//Use this to change location of CATS
 
  //CATS Core
  G4Tubs* Core =
-    new G4Tubs("Core", 0*cm, 13.335*cm, z, 0.*deg, 360.*deg);
+    new G4Tubs("Core", 0*cm, 13.35*cm, z, 0.*deg, 360.*deg);
 
  G4LogicalVolume* logicCore =
     new G4LogicalVolume(Core,
@@ -131,37 +123,37 @@ G4VPhysicalVolume* B4cDetectorConstruction::DefineVolumes()
 
    //Segmented Annulus
   G4Tubs* AnnulusPiece1 =
-    new G4Tubs("AnnulusPiece1", 13.335*cm, 24.13*cm, z, 0.*deg, 60*deg);
+    new G4Tubs("AnnulusPiece1", 13.35*cm, 24.15*cm, z, 0.*deg, 60*deg);
   G4LogicalVolume *logicAnnulusPiece1 =
     new G4LogicalVolume(AnnulusPiece1, coreMaterial, "AnnulusPiece1");
    new G4PVPlacement(0, pos1, logicAnnulusPiece1, "AnnulusPiece1", worldLV, false, 2, fCheckOverlaps);
 
    G4Tubs* AnnulusPiece2 =
-     new G4Tubs("AnnulusPiece2", 13.335*cm, 24.13*cm, z, 60.*deg, 60*deg);
+     new G4Tubs("AnnulusPiece2", 13.35*cm, 24.15*cm, z, 60.*deg, 60*deg);
    G4LogicalVolume *logicAnnulusPiece2 =
     new G4LogicalVolume(AnnulusPiece2, coreMaterial, "AnnulusPiece2");
    new G4PVPlacement(0, pos1, logicAnnulusPiece2, "AnnulusPiece2", worldLV, false, 3, fCheckOverlaps);
 
    G4Tubs* AnnulusPiece3 =
-    new G4Tubs("AnnulusPiece3", 13.335*cm, 24.13*cm, z, 120.*deg, 60*deg);
+    new G4Tubs("AnnulusPiece3", 13.35*cm, 24.15*cm, z, 120.*deg, 60*deg);
   G4LogicalVolume *logicAnnulusPiece3 =
     new G4LogicalVolume(AnnulusPiece3, coreMaterial, "AnnulusPiece3");
    new G4PVPlacement(0, pos1, logicAnnulusPiece3, "AnnulusPiece3", worldLV, false, 4, fCheckOverlaps);
 
   G4Tubs* AnnulusPiece4 =
-    new G4Tubs("AnnulusPiece4", 13.335*cm, 24.13*cm, z, 180.*deg, 60*deg);
+    new G4Tubs("AnnulusPiece4", 13.35*cm, 24.15*cm, z, 180.*deg, 60*deg);
   G4LogicalVolume *logicAnnulusPiece4 =
     new G4LogicalVolume(AnnulusPiece4, coreMaterial, "AnnulusPiece4");
    new G4PVPlacement(0, pos1, logicAnnulusPiece4, "AnnulusPiece4", worldLV, false, 5, fCheckOverlaps);
 
    G4Tubs* AnnulusPiece5 =
-    new G4Tubs("AnnulusPiece5", 13.335*cm, 24.13*cm, z, 240.*deg, 60*deg);
+    new G4Tubs("AnnulusPiece5", 13.35*cm, 24.15*cm, z, 240.*deg, 60*deg);
   G4LogicalVolume *logicAnnulusPiece5 =
     new G4LogicalVolume(AnnulusPiece5, coreMaterial, "AnnulusPiece5");
    new G4PVPlacement(0, pos1, logicAnnulusPiece5, "AnnulusPiece5", worldLV, false, 6, fCheckOverlaps);
 
    G4Tubs* AnnulusPiece6 =
-    new G4Tubs("AnnulusPiece6", 13.335*cm, 24.13*cm, z, 300.*deg, 60*deg);
+    new G4Tubs("AnnulusPiece6", 13.35*cm, 24.15*cm, z, 300.*deg, 60*deg);
   G4LogicalVolume *logicAnnulusPiece6 =
     new G4LogicalVolume(AnnulusPiece6, coreMaterial, "AnnulusPiece6");
    new G4PVPlacement(0, pos1, logicAnnulusPiece6, "AnnulusPiece6", worldLV, false, 7, fCheckOverlaps);
@@ -169,42 +161,42 @@ G4VPhysicalVolume* B4cDetectorConstruction::DefineVolumes()
 
   //Lithium Carbonate Layer for Insulation
   G4Tubs* Ring =
-	 new G4Tubs("Ring", 24.13*cm, 25.13*cm, z, 0, 360*deg);
+	 new G4Tubs("Ring", 24.15*cm, 25.15*cm, z, 0, 360*deg);
  	G4LogicalVolume *logicRing =
 	new G4LogicalVolume(Ring, ringMaterial, "Ring");
 	new G4PVPlacement(0, pos1, logicRing, "Ring", worldLV, false, 8, fCheckOverlaps);
 
 //Scintillators to veto Cosmic Rays
-G4Tubs *Scint1 = new G4Tubs("Scint1", 25.13*cm, 35.13*cm, z, 0, 72*deg);
+G4Tubs *Scint1 = new G4Tubs("Scint1", 25.15*cm, 35.15*cm, w, 0, 72*deg);
 G4LogicalVolume *logicScint1 = 
 	new G4LogicalVolume(Scint1, scintMaterial, "Scint1");
 	new G4PVPlacement(0, pos1, logicScint1, "Scint1", worldLV, false, 9, fCheckOverlaps);
 
-G4Tubs *Scint2 = new G4Tubs("Scint2", 25.13*cm, 35.13*cm, z, 72*deg, 72*deg);
+G4Tubs *Scint2 = new G4Tubs("Scint2", 25.15*cm, 35.15*cm, w, 72*deg, 72*deg);
 G4LogicalVolume *logicScint2 =
         new G4LogicalVolume(Scint2, scintMaterial, "Scint2");
         new G4PVPlacement(0, pos1, logicScint2, "Scint2", worldLV, false, 10, fCheckOverlaps);
 
-G4Tubs *Scint3 = new G4Tubs("Scint3", 25.13*cm, 35.13*cm, z, 144*deg, 72*deg);
+G4Tubs *Scint3 = new G4Tubs("Scint3", 25.15*cm, 35.15*cm, w, 144*deg, 72*deg);
 G4LogicalVolume *logicScint3 =
         new G4LogicalVolume(Scint3, scintMaterial, "Scint3");
         new G4PVPlacement(0, pos1, logicScint3, "Scint3", worldLV, false, 11, fCheckOverlaps);
 
-G4Tubs *Scint4 = new G4Tubs("Scint4", 25.13*cm, 35.13*cm, z, 216*deg, 72*deg);
+G4Tubs *Scint4 = new G4Tubs("Scint4", 25.15*cm, 35.15*cm, w, 216*deg, 72*deg);
 G4LogicalVolume *logicScint4 =
         new G4LogicalVolume(Scint4, scintMaterial, "Scint4");
         new G4PVPlacement(0, pos1, logicScint4, "Scint4", worldLV, false, 12, fCheckOverlaps);
 
-G4Tubs *Scint5 = new G4Tubs("Scint5", 25.13*cm, 35.13*cm, z, 288*deg, 72*deg);
+G4Tubs *Scint5 = new G4Tubs("Scint5", 25.15*cm, 35.15*cm, w, 288*deg, 72*deg);
 G4LogicalVolume *logicScint5 =
         new G4LogicalVolume(Scint5, scintMaterial, "Scint5");
         new G4PVPlacement(0, pos1, logicScint5, "Scint5", worldLV, false, 13, fCheckOverlaps);
 //previous 5 form an annulus, 6th scintillator goes on the back
 
-G4Tubs *Scint6 = new G4Tubs("Scint6", 0*cm, 35.13*cm, 4.7*cm, 0*deg, 360*deg);
+G4Tubs *Scint6 = new G4Tubs("Scint6", 0*cm, 35*cm, 4.7*cm, 0*deg, 360*deg);
 G4LogicalVolume *logicScint6 =
 	new G4LogicalVolume(Scint6, scintMaterial, "Scint6");
-	new G4PVPlacement(0, G4ThreeVector(0,0,186.45*cm), logicScint6, "Scint6", worldLV, false, 14, fCheckOverlaps);
+	new G4PVPlacement(0, G4ThreeVector(0,0,205.45*cm), logicScint6, "Scint6", worldLV, false, 14, fCheckOverlaps);//186.45
 
 
 //Set colours
@@ -230,30 +222,27 @@ logicScint6->SetVisAttributes(CATScolour);
 
 G4double Leadx = 351.5*mm;
 G4double Longy = 50*mm;
-G4double Longzz = 450.5*mm;
+G4double Longzz = 650.5*mm;
 
 //Two of the Long Components
-G4Box *LongBit1 = new G4Box("LongBit1", Leadx+100*mm, Longy, Longzz);
-G4Box *LongBit2 = new G4Box("LongBit2", Leadx+100*mm, Longy, Longzz);
+G4Box *LongBit1 = new G4Box("LongBit1", Leadx+111*mm, Longy, Longzz);
+G4Box *LongBit2 = new G4Box("LongBit2", Leadx+111*mm, Longy, Longzz);
 
-G4Box* OtherLongBit1 = new G4Box("OtherLongBit1", Longy, Leadx, Longzz);
-G4Box* OtherLongBit2 = new G4Box("OtherLongBit2", Longy, Leadx, Longzz);
+G4Box* OtherLongBit1 = new G4Box("OtherLongBit1", Longy, Leadx+10*mm, Longzz);
+G4Box* OtherLongBit2 = new G4Box("OtherLongBit2", Longy, Leadx+10*mm, Longzz);
 
 
-G4Box* EndBit = new G4Box("EndBit", Leadx+100*mm, Leadx+100*mm, Longy);
+G4Box* EndBit = new G4Box("EndBit", Leadx+110*mm, Leadx+105*mm, Longy);
 
 //subtraction solid here!
-G4Box* FrontBit = new G4Box("FrontBit", Longzz, Longzz, 105*mm);
+G4Box* FrontBit = new G4Box("FrontBit", 460.5*mm, 460*mm, 105*mm);
 G4Tubs* FrontBitHole = new G4Tubs("FrontBitHole", 0*cm, 6.9*cm, 105.1*mm, 0*deg, 360*deg); //had to make the hole slightly longer than the box- otherwise you could not see the hole on both sides of the front bit
 
 G4SubtractionSolid *subtraction = new G4SubtractionSolid("subtraction", FrontBit, FrontBitHole);
 
-//G4Cons* LeadCone = new G4Cons("LeadCone", 138*mm, 260*mm, 187*mm, 260*mm, 73*mm, 0*deg, 360*deg);
-//G4LogicalVolume *LeadConeLogic = new G4LogicalVolume(LeadCone, boxMaterial, "LeadConeLogic");
-//				 new G4PVPlacement(0, G4ThreeVector(0,0,-390.5*mm), LeadConeLogic, "PLeadCone", worldLV, 15, true, fCheckOverlaps);//G4ThreeVector(0,0,-390.5*mm)
 
 //endbit transform
-G4ThreeVector EndDisplacement = G4ThreeVector(0,0,46.15*cm);//adding 5cm to z so no overlap with back scintillator
+G4ThreeVector EndDisplacement = G4ThreeVector(0,0,66.15*cm);//adding 5cm to z so no overlap with back scintillator
 G4RotationMatrix none = G4RotationMatrix(); //for no rotation
 G4Transform3D EndBitTransform = G4Transform3D(none, EndDisplacement);
 
@@ -262,7 +251,7 @@ G4double Placement = 401.5*mm;
 G4double LongBitZ= -1.3*cm;
 
 //LongBit1 transform
-G4ThreeVector HighLongBit1 = G4ThreeVector(0,Placement,LongBitZ);
+G4ThreeVector HighLongBit1 = G4ThreeVector(0,Placement+1*cm,LongBitZ);
 G4Transform3D LongBit1Transform = G4Transform3D(none, HighLongBit1);
 
 //LongBit2 transform
@@ -270,14 +259,14 @@ G4ThreeVector LowLongBit2 = G4ThreeVector(0,-Placement,LongBitZ);
 G4Transform3D LongBit2Transform = G4Transform3D(none, LowLongBit2);
 
 //OtherLongBit1 transform
-G4ThreeVector OLB1Displacement = G4ThreeVector(Placement,0,LongBitZ);
+G4ThreeVector OLB1Displacement = G4ThreeVector(Placement+1*cm,0,LongBitZ);
 G4Transform3D OLB1Transform = G4Transform3D(none, OLB1Displacement);
 
 //OtherLongBit2 transform
-G4ThreeVector OLB2Displacement = G4ThreeVector(-Placement,0,LongBitZ);
+G4ThreeVector OLB2Displacement = G4ThreeVector(-Placement-1*cm,0,LongBitZ);
 G4Transform3D OLB2Transform = G4Transform3D(none, OLB2Displacement);
 //front
-G4ThreeVector FrontDisplacement = G4ThreeVector(1*mm,0,-495.5*mm);
+G4ThreeVector FrontDisplacement = G4ThreeVector(1*mm,5*mm,-695.5*mm);
 G4Transform3D FrontBitTransform = G4Transform3D(none, FrontDisplacement);
 
 G4MultiUnion* LeadBox = new G4MultiUnion("LeadBox");
@@ -305,8 +294,8 @@ LeadBoxLogic->SetVisAttributes(LeadBoxVisAtt);
 
 G4Box* Veto = new G4Box("Veto", 7*cm, 7*cm, 2.5*mm);
 G4LogicalVolume *VetoLogic = new G4LogicalVolume(Veto, scintMaterial, "VetoLogic");
-			     new G4PVPlacement(0, G4ThreeVector(0,0, 873.5*mm), VetoLogic, "PVeto", worldLV, 17, true, fCheckOverlaps);
-
+			     new G4PVPlacement(0, G4ThreeVector(0,5*mm, 693.5*mm), VetoLogic, "PVeto", worldLV, 17, true, fCheckOverlaps);
+//873.5
 auto VetoVisAtt= new G4VisAttributes(G4Colour(1.0,0.0,0.0));
 VetoVisAtt->SetVisibility(true);
 VetoLogic->SetVisAttributes(VetoVisAtt);
@@ -315,8 +304,8 @@ VetoLogic->SetVisAttributes(VetoVisAtt);
 			     
 G4Cons* LeadCone = new G4Cons("LeadCone", 138*mm, 260*mm, 187*mm, 260*mm, 73*mm, 0*deg, 360*deg);
 G4LogicalVolume *LeadConeLogic = new G4LogicalVolume(LeadCone, boxMaterial, "LeadConeLogic");
-                                 new G4PVPlacement(0, G4ThreeVector(0,0,1109.5*mm), LeadConeLogic, "PLeadCone", worldLV, 15, true, fCheckOverlaps);//G4ThreeVector(0,0,-390.5*mm), 1227.5, 1182.5
-	
+                                 new G4PVPlacement(0, G4ThreeVector(0,0,1019.5*mm), LeadConeLogic, "PLeadCone", worldLV, 15, true, fCheckOverlaps);//G4ThreeVector(0,0,-390.5*mm), 1227.5, 1182.5
+//1109.5	
  
 auto LeadConeVisAtt= new G4VisAttributes(G4Colour(1.0,0.0,1.0));
 LeadConeVisAtt->SetVisibility(true);
@@ -326,13 +315,6 @@ LeadConeLogic->SetVisAttributes(LeadConeVisAtt);
   //
   worldLV->SetVisAttributes (G4VisAttributes::GetInvisible());
 
-  //auto simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
-  //simpleBoxVisAtt->SetVisibility(true);
-  //calorLV->SetVisAttributes(simpleBoxVisAtt);
-
-  //
-  // Always return the physical World
-  //
   return worldPV;
 }
 //Main Construct ends here!
@@ -346,8 +328,8 @@ void B4cDetectorConstruction::ConstructSDandField()
   // Sensitive detectors
   //
   auto coreSD 
-    = new B4cCalorimeterSD("CoreSD", "CoreHitsCollection", 1);//Change capitals ?????
-  G4SDManager::GetSDMpointer()->AddNewDetector(coreSD);		//Also, consider making all of these the same sensitive detector, should increase mean energy of core
+    = new B4cCalorimeterSD("CoreSD", "CoreHitsCollection", 1);
+  G4SDManager::GetSDMpointer()->AddNewDetector(coreSD);		// consider making all of these the same sensitive detector, should increase mean energy of core
   SetSensitiveDetector("Core",coreSD);
 
   auto annuluspiece1SD
@@ -380,17 +362,6 @@ void B4cDetectorConstruction::ConstructSDandField()
   G4SDManager::GetSDMpointer()->AddNewDetector(annuluspiece6SD);
   SetSensitiveDetector("AnnulusPiece6",annuluspiece6SD);
 
-  /*
-  auto absoSD
-    = new B4cCalorimeterSD("AbsorberSD", "AbsorberHitsCollection", fNofLayers);
-  G4SDManager::GetSDMpointer()->AddNewDetector(absoSD);
-  SetSensitiveDetector("AbsoLV",absoSD);
-
-  auto gapSD
-    = new B4cCalorimeterSD("GapSD", "GapHitsCollection", fNofLayers);
-  G4SDManager::GetSDMpointer()->AddNewDetector(gapSD);
-  SetSensitiveDetector("GapLV",gapSD);
-*/
 
 }
 

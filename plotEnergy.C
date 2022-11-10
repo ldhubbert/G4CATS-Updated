@@ -21,9 +21,10 @@
   c1->cd(1);
  
   TTree *B4 = (TTree*)f.Get("B4");
- // B4->Draw("Ecore>>Ecore(100,90,105)");
-  B4->Draw("Ecore>>Ecore(500,480,505)");
+  //B4->Draw("Ecore>>Ecore(25,4,5.1)");
+  B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Ecore(50,4,5.1)");
   //TH1F *Ecore = new TH1F("Ecore","Ecore",3000,80,110);
+  //B4->Draw("Ecore>>Ecore(300,4,5.5)");
   //Ecore->GetXaxis()->SetRangeUser(80,110);
   //B4->Draw("Ecore");
   //TH1D* hist1 = (TH1D*)f.Get("Ecore");
@@ -31,22 +32,4 @@
   //hist1->Draw("hist1>>hist1(1000,80,110)");
   //hist1->Draw("HIST");
   
-  // Draw Labs histogram in the pad 2
-  //c1->cd(2);
-  //TH1D* hist2 = (TH1D*)f.Get("Labs");
-  //hist2->Draw("HIST");
-  
-  // Draw Egap histogram in the pad 3
-  // with logaritmic scale for y
-  //TH1D* hist3 = (TH1D*)f.Get("Egap");
-  //c1->cd(3);
-  //gPad->SetLogy(1);
-  //hist3->Draw("HIST");
-  
-  // Draw Lgap histogram in the pad 4
-  // with logaritmic scale for y
-  //c1->cd(4);
-  //gPad->SetLogy(1);
-  //TH1D* hist4 = (TH1D*)f.Get("Lgap");
-  //hist4->Draw("HIST");
 }  
