@@ -22,8 +22,8 @@
 #
 /gun/particle gamma
 /gun/direction 0 0 1
-/gun/energy 500 MeV
-/run/beamOn 100000
+/gun/energy 400 MeV
+/run/beamOn 1000
 #
 # 20 events
 #

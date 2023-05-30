@@ -116,16 +116,18 @@ G4bool B4cCalorimeterSD::ProcessHits(G4Step* step,
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-void B4cCalorimeterSD::EndOfEvent(G4HCofThisEvent*)
-{
-  if ( verboseLevel>1 ) { 
-     auto nofHits = fHitsCollection->entries();
-     G4cout
-       << G4endl 
-       << "-------->Hits Collection: in this event they are " << nofHits 
-       << " hits in the tracker chambers: " << G4endl;
-     for ( G4int i=0; i<nofHits; i++ ) (*fHitsCollection)[i]->Print();
-  }
-}
+//Laura: Commented out the following to resuce the on-screen printing while sim is running.
+
+//void B4cCalorimeterSD::EndOfEvent(G4HCofThisEvent*)
+//{
+ // if ( verboseLevel>1 ) { 
+    // auto nofHits = fHitsCollection->entries();
+    // G4cout
+      // << G4endl 
+      // << "-------->Hits Collection: in this event they are " << nofHits 
+      // << " hits in the tracker chambers: " << G4endl;
+    // for ( G4int i=0; i<nofHits; i++ ) (*fHitsCollection)[i]->Print();
+ // }
+//}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

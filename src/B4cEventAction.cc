@@ -81,38 +81,43 @@ B4cEventAction::GetHitsCollection(G4int hcID,
 }    
 
 
-void B4cEventAction::PrintEventStatistics(
-                              G4double coreEdep, G4double coreTrackLength,
-			      G4double ann2Edep,
-			      G4double ann3Edep,
-			      G4double ann4Edep,
-			      G4double ann5Edep,
-			      G4double ann6Edep,
-                              G4double ann1Edep, G4double ann1TrackLength) const
-{
-  // print event statistics
-  G4cout
-     << "   Core: total energy: " 
-     << std::setw(1) << G4BestUnit(coreEdep, "Energy")
-     << "       total track length: " 
-     << std::setw(1) << G4BestUnit(coreTrackLength, "Length")
-     << G4endl
-     << "        Annulus Piece 1: total energy: " 
-     << std::setw(2) << G4BestUnit(ann1Edep, "Energy")
-     << "       total track length: " 
-     << std::setw(2) << G4BestUnit(ann1TrackLength, "Length")
-     << "        Annulus Piece 2: total energy: "
-     << std::setw(3) << G4BestUnit(ann2Edep, "Energy")
-     << "        Annulus Piece 3: total energy: "
-     << std::setw(4) << G4BestUnit(ann3Edep, "Energy")
-     << "        Annulus Piece 4: total energy: "
-     << std::setw(5) << G4BestUnit(ann4Edep, "Energy")     
-     << "        Annulus Piece 5: total energy: "
-     << std::setw(6) << G4BestUnit(ann5Edep, "Energy")     
-     << "        Annulus Piece 6: total energy: "
-     << std::setw(7) << G4BestUnit(ann6Edep, "Energy")
-     << G4endl;
-}
+//Laura: Commented this out
+
+//void B4cEventAction::PrintEventStatistics(
+                             // G4double coreEdep, G4double coreTrackLength,
+			     // G4double ann2Edep,
+			     // G4double ann3Edep,
+			     // G4double ann4Edep,
+			     // G4double ann5Edep,
+			     // G4double ann6Edep,
+                             // G4double ann1Edep, G4double ann1TrackLength) const
+//{
+
+//Laura: Commented out the following to reduce on-screen printing during sim runs.      
+
+	// print event statistics
+ // G4cout
+    // << "   Core: total energy: " 
+    // << std::setw(1) << G4BestUnit(coreEdep, "Energy")
+    // << "       total track length: " 
+    // << std::setw(1) << G4BestUnit(coreTrackLength, "Length")
+    // << G4endl
+    // << "        Annulus Piece 1: total energy: " 
+    // << std::setw(2) << G4BestUnit(ann1Edep, "Energy")
+    // << "       total track length: " 
+    // << std::setw(2) << G4BestUnit(ann1TrackLength, "Length")
+    // << "        Annulus Piece 2: total energy: "
+    // << std::setw(3) << G4BestUnit(ann2Edep, "Energy")
+    // << "        Annulus Piece 3: total energy: "
+    // << std::setw(4) << G4BestUnit(ann3Edep, "Energy")
+    // << "        Annulus Piece 4: total energy: "
+    // << std::setw(5) << G4BestUnit(ann4Edep, "Energy")     
+    // << "        Annulus Piece 5: total energy: "
+    // << std::setw(6) << G4BestUnit(ann5Edep, "Energy")     
+    // << "        Annulus Piece 6: total energy: "
+    // << std::setw(7) << G4BestUnit(ann6Edep, "Energy")
+    // << G4endl;
+//}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -159,21 +164,24 @@ void B4cEventAction::EndOfEventAction(const G4Event* event)
   auto Ann6Hit = (*Ann6HC)[Ann6HC->entries()-1];
   // Print per event (modulo n)
   //
-  auto eventID = event->GetEventID();
-  auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
-    G4cout << "---> End of event: " << eventID << G4endl;     
+  
+  //Laura: Commented out the following to reduce on-screen printing during sim runs.
+  
+ // auto eventID = event->GetEventID();
+ // auto printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
+ // if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
+   // G4cout << "---> End of event: " << eventID << G4endl;     
 
-    PrintEventStatistics(
-      CoreHit->GetEdep(), CoreHit->GetTrackLength(),
-      Ann2Hit->GetEdep(),
-      Ann3Hit->GetEdep(),
-      Ann4Hit->GetEdep(),
-      Ann5Hit->GetEdep(),
-      Ann6Hit->GetEdep(),
-      Ann1Hit->GetEdep(), Ann1Hit->GetTrackLength());
+   // PrintEventStatistics(
+     // CoreHit->GetEdep(), CoreHit->GetTrackLength(),
+     // Ann2Hit->GetEdep(),
+     // Ann3Hit->GetEdep(),
+     // Ann4Hit->GetEdep(),
+     // Ann5Hit->GetEdep(),
+     // Ann6Hit->GetEdep(),
+     // Ann1Hit->GetEdep(), Ann1Hit->GetTrackLength());
  
-      }  
+      //}  
   
   // Fill histograms, ntuple
   //
