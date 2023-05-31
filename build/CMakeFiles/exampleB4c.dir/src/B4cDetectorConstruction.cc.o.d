@@ -1,7 +1,7 @@
 CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
- /home/vincent/B4c/src/B4cDetectorConstruction.cc \
+ /home/laura/Vincent/G4CATS/src/B4cDetectorConstruction.cc \
  /usr/include/stdc-predef.h \
- /home/vincent/B4c/include/B4cDetectorConstruction.hh \
+ /home/laura/Vincent/G4CATS/include/B4cDetectorConstruction.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VUserDetectorConstruction.hh \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/c++/11/x86_64-redhat-linux/bits/c++config.h \
@@ -12,7 +12,6 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
  /usr/include/c++/11/x86_64-redhat-linux/bits/cpu_defines.h \
- /usr/include/c++/11/pstl/pstl_config.h \
  /usr/include/c++/11/bits/functexcept.h \
  /usr/include/c++/11/bits/exception_defines.h \
  /usr/include/c++/11/bits/cpp_type_traits.h \
@@ -74,23 +73,10 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/bits/pthreadtypes-arch.h /usr/include/bits/struct_mutex.h \
  /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
- /usr/include/c++/11/bits/specfun.h /usr/include/c++/11/limits \
- /usr/include/c++/11/tr1/gamma.tcc \
- /usr/include/c++/11/tr1/special_function_util.h \
- /usr/include/c++/11/tr1/bessel_function.tcc \
- /usr/include/c++/11/tr1/beta_function.tcc \
- /usr/include/c++/11/tr1/ell_integral.tcc \
- /usr/include/c++/11/tr1/exp_integral.tcc \
- /usr/include/c++/11/tr1/hypergeometric.tcc \
- /usr/include/c++/11/tr1/legendre_function.tcc \
- /usr/include/c++/11/tr1/modified_bessel_func.tcc \
- /usr/include/c++/11/tr1/poly_hermite.tcc \
- /usr/include/c++/11/tr1/poly_laguerre.tcc \
- /usr/include/c++/11/tr1/riemann_zeta.tcc /usr/include/c++/11/sstream \
- /usr/include/c++/11/istream /usr/include/c++/11/ios \
- /usr/include/c++/11/iosfwd /usr/include/c++/11/bits/stringfwd.h \
- /usr/include/c++/11/bits/postypes.h /usr/include/c++/11/cwchar \
- /usr/include/wchar.h \
+ /usr/include/c++/11/sstream /usr/include/c++/11/istream \
+ /usr/include/c++/11/ios /usr/include/c++/11/iosfwd \
+ /usr/include/c++/11/bits/stringfwd.h /usr/include/c++/11/bits/postypes.h \
+ /usr/include/c++/11/cwchar /usr/include/wchar.h \
  /usr/lib/gcc/x86_64-redhat-linux/11/include/stdarg.h \
  /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
  /usr/include/bits/types/mbstate_t.h \
@@ -124,8 +110,7 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/c++/11/bits/cxxabi_forced.h \
  /usr/include/c++/11/bits/stl_function.h \
  /usr/include/c++/11/backward/binders.h \
- /usr/include/c++/11/bits/basic_string.h /usr/include/c++/11/string_view \
- /usr/include/c++/11/bits/string_view.tcc \
+ /usr/include/c++/11/bits/basic_string.h \
  /usr/include/c++/11/ext/string_conversions.h /usr/include/c++/11/cstdlib \
  /usr/include/c++/11/cstdio /usr/include/stdio.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__fpos64_t.h \
@@ -162,25 +147,11 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/c++/11/bits/stl_heap.h \
  /usr/include/c++/11/bits/stl_tempbuf.h \
  /usr/include/c++/11/bits/uniform_int_dist.h \
- /usr/include/c++/11/pstl/glue_algorithm_defs.h \
- /usr/include/c++/11/functional /usr/include/c++/11/tuple \
- /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
- /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
- /usr/include/c++/11/bits/std_function.h \
- /usr/include/c++/11/unordered_map \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/hashtable_policy.h \
- /usr/include/c++/11/bits/enable_special_members.h \
- /usr/include/c++/11/bits/node_handle.h \
- /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/c++/11/bits/erase_if.h \
- /usr/include/c++/11/pstl/execution_defs.h \
  /opt/geant4_v10.5.1/include/Geant4/G4String.hh \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /opt/geant4_v10.5.1/include/Geant4/G4String.icc \
  /opt/geant4_v10.5.1/include/Geant4/templates.hh \
- /usr/include/c++/11/climits \
+ /usr/include/c++/11/limits /usr/include/c++/11/climits \
  /usr/lib/gcc/x86_64-redhat-linux/11/include/limits.h \
  /usr/lib/gcc/x86_64-redhat-linux/11/include/syslimits.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
@@ -192,8 +163,12 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /opt/geant4_v10.5.1/include/Geant4/G4ExceptionSeverity.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4EnvironmentUtils.hh \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
- /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/stl_map.h /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h \
+ /usr/include/c++/11/bits/stl_multimap.h \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/iomanip \
  /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
  /usr/include/c++/11/x86_64-redhat-linux/bits/time_members.h \
@@ -208,7 +183,7 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h \
  /opt/geant4_v10.5.1/include/Geant4/globals.hh \
- /home/vincent/B4c/include/B4cCalorimeterSD.hh \
+ /home/laura/Vincent/G4CATS/include/B4cCalorimeterSD.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VSensitiveDetector.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VHit.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4Step.hh \
@@ -241,6 +216,7 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /opt/geant4_v10.5.1/include/Geant4/G4AutoLock.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4Threading.hh \
  /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
+ /usr/include/c++/11/bits/refwrap.h \
  /usr/include/c++/11/bits/this_thread_sleep.h \
  /usr/include/c++/11/condition_variable \
  /usr/include/c++/11/bits/shared_ptr.h \
@@ -250,6 +226,7 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /usr/include/c++/11/atomic /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
  /usr/include/c++/11/bits/atomic_futex.h \
+ /usr/include/c++/11/bits/std_function.h \
  /opt/geant4_v10.5.1/include/Geant4/G4Allocator.hh \
  /usr/include/c++/11/cstddef \
  /opt/geant4_v10.5.1/include/Geant4/G4AllocatorPool.hh \
@@ -335,7 +312,7 @@ CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: \
  /opt/geant4_v10.5.1/include/Geant4/G4TouchableHistory.icc \
  /opt/geant4_v10.5.1/include/Geant4/G4CollectionNameVector.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VSDFilter.hh \
- /home/vincent/B4c/include/B4cCalorHit.hh \
+ /home/laura/Vincent/G4CATS/include/B4cCalorHit.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VHit.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4THitsCollection.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4Allocator.hh \

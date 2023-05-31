@@ -78,16 +78,14 @@ G4bool B4cCalorHit::operator==(const B4cCalorHit& right) const
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-//Laura: Commented out the following to reduce screen-printing while sim is running
-
-//void B4cCalorHit::Print()
-//{
- // G4cout
-    // << "Edep: " 
-    // << std::setw(7) << G4BestUnit(fEdep,"Energy")
-    // << " track length: " 
-    // << std::setw(7) << G4BestUnit( fTrackLength,"Length")
-    // << G4endl;
-//}
+void B4cCalorHit::Print()
+{
+  G4cout
+     << "Edep: " 
+     << std::setw(7) << G4BestUnit(fEdep,"Energy")
+     << " track length: " 
+     << std::setw(7) << G4BestUnit( fTrackLength,"Length")
+     << G4endl;
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

@@ -39,23 +39,20 @@
 
 B4RunAction::B4RunAction()
  : G4UserRunAction()
-
-//Laura: Commented out the following to reduce on-screen printing during sim. runs.
-
 { 
   // set printing event number per each event
-//G4RunManager::GetRunManager()->SetPrintProgress(1);     
+  G4RunManager::GetRunManager()->SetPrintProgress(0);     
 
   // Create analysis manager
   // The choice of analysis technology is done via selectin of a namespace
   // in B4Analysis.hh
- // auto analysisManager = G4AnalysisManager::Instance();
- // G4cout << "Using " << analysisManager->GetType() << G4endl;
+  auto analysisManager = G4AnalysisManager::Instance();
+  ///G4cout << "Using " << analysisManager->GetType() << G4endl;
 
   // Create directories 
   //analysisManager->SetHistoDirectoryName("histograms");
   //analysisManager->SetNtupleDirectoryName("ntuple");
-  analysisManager->SetVerboseLevel(1);
+  analysisManager->SetVerboseLevel(0);
   analysisManager->SetNtupleMerging(true);
     // Note: merging ntuples is available only with Root output
 
@@ -109,79 +106,71 @@ void B4RunAction::BeginOfRunAction(const G4Run* /*run*/)
 
   // Open an output file
   //
-  G4String fileName = "B4";
+  G4String fileName = "RUN_RESULTS";
   analysisManager->OpenFile(fileName);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-
-//Laura: Commented out the following to reduce on-screen printing
-//Histogram stats were still printed out after all of this was commeneted out...
-
-
-
-
-//void B4RunAction::EndOfRunAction(const G4Run* /*run*)
-//{
+void B4RunAction::EndOfRunAction(const G4Run* /*run*/)
+{
   // print histogram statistics
   //
-
- // auto analysisManager = G4AnalysisManager::Instance();
- // if ( analysisManager->GetH1(1) ) {
-   // G4cout << G4endl << " ----> print histograms statistic ";
-   // if(isMaster) {
-     // G4cout << "for the entire run " << G4endl << G4endl; 
-   // }
-   // else {
-     // G4cout << "for the local thread " << G4endl << G4endl; 
-   // }
+  auto analysisManager = G4AnalysisManager::Instance();
+  if ( analysisManager->GetH1(1) ) {
+    G4cout << G4endl << " ----> print histograms statistic ";
+    if(isMaster) {
+      G4cout << "for the entire run " << G4endl << G4endl; 
+    }
+    else {
+      G4cout << "for the local thread " << G4endl << G4endl; 
+    }
     
-   // G4cout << " Ecore : mean = " 
-      // << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy") 
-      // << " rms = " 
-      // << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
+    G4cout << " Ecore : mean = " 
+       << G4BestUnit(analysisManager->GetH1(0)->mean(), "Energy") 
+       << " rms = " 
+       << G4BestUnit(analysisManager->GetH1(0)->rms(),  "Energy") << G4endl;
     
-   // G4cout << " Eann1 : mean = " 
-      // << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy") 
-      // << " rms = " 
-      // << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
+    G4cout << " Eann1 : mean = " 
+       << G4BestUnit(analysisManager->GetH1(1)->mean(), "Energy") 
+       << " rms = " 
+       << G4BestUnit(analysisManager->GetH1(1)->rms(),  "Energy") << G4endl;
     
-   // G4cout << " Lcore : mean = " 
-     // << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length") 
-     // << " rms = " 
-     // << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
+    G4cout << " Lcore : mean = " 
+      << G4BestUnit(analysisManager->GetH1(2)->mean(), "Length") 
+      << " rms = " 
+      << G4BestUnit(analysisManager->GetH1(2)->rms(),  "Length") << G4endl;
 
-   // G4cout << " Lann1 : mean = " 
-     // << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length") 
-     // << " rms = " 
-     // << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
+    G4cout << " Lann1 : mean = " 
+      << G4BestUnit(analysisManager->GetH1(3)->mean(), "Length") 
+      << " rms = " 
+      << G4BestUnit(analysisManager->GetH1(3)->rms(),  "Length") << G4endl;
 
-   // G4cout << " Eann2 : mean = "
-      // << G4BestUnit(analysisManager->GetH1(4)->mean(), "Energy")
-      // << " rms = "
-      // << G4BestUnit(analysisManager->GetH1(4)->rms(),  "Energy") << G4endl;
+    G4cout << " Eann2 : mean = "
+       << G4BestUnit(analysisManager->GetH1(4)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(4)->rms(),  "Energy") << G4endl;
 
-   // G4cout << " Eann3 : mean = "
-      // << G4BestUnit(analysisManager->GetH1(5)->mean(), "Energy")
-      // << " rms = "
-      // << G4BestUnit(analysisManager->GetH1(5)->rms(),  "Energy") << G4endl;
+    G4cout << " Eann3 : mean = "
+       << G4BestUnit(analysisManager->GetH1(5)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(5)->rms(),  "Energy") << G4endl;
 
-   // G4cout << " Eann4 : mean = "
-      // << G4BestUnit(analysisManager->GetH1(6)->mean(), "Energy")
-      // << " rms = "
-      // << G4BestUnit(analysisManager->GetH1(6)->rms(),  "Energy") << G4endl;
+    G4cout << " Eann4 : mean = "
+       << G4BestUnit(analysisManager->GetH1(6)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(6)->rms(),  "Energy") << G4endl;
 	        
-   // G4cout << " Eann5 : mean = "
-      // << G4BestUnit(analysisManager->GetH1(7)->mean(), "Energy")
-      // << " rms = "
-      // << G4BestUnit(analysisManager->GetH1(7)->rms(),  "Energy") << G4endl;
+    G4cout << " Eann5 : mean = "
+       << G4BestUnit(analysisManager->GetH1(7)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(7)->rms(),  "Energy") << G4endl;
 
-   // G4cout << " Eann6 : mean = "
-      // << G4BestUnit(analysisManager->GetH1(8)->mean(), "Energy")
-      // << " rms = "
-      // << G4BestUnit(analysisManager->GetH1(8)->rms(),  "Energy") << G4endl;
-// }
+    G4cout << " Eann6 : mean = "
+       << G4BestUnit(analysisManager->GetH1(8)->mean(), "Energy")
+       << " rms = "
+       << G4BestUnit(analysisManager->GetH1(8)->rms(),  "Energy") << G4endl;
+ }
   // save histograms & ntuple
   //
   analysisManager->Write();
