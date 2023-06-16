@@ -6,7 +6,7 @@ void FWHM()
   //gStyle->SetOptStat(0);   
 
   // Open file filled by Geant4 simulation 
-  TFile f("B4.root");
+  TFile f("~/Vincent/G4CATS/Out/B4_500MeV.root");
 
   TCanvas* c1 = new TCanvas("c1", "", 20, 20, 1000, 1000);
   //c1->Divide(1,1);
