@@ -17,9 +17,10 @@
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
-  TF1 *f1 = new TF1("f1", "gaus(0)", -2, 2);
+  TF1 *f1 = new TF1("f1", "gaus(0)", -4.5, 4.5);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/(0.08*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi()))));
+  //f1->SetParameter(0, (1/((0.08*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, 1);
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
@@ -57,7 +58,7 @@
 
   //Compare to normal 200MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 200, 175, 205);
+  TH1F *h2 = new TH1F("Histogram 1", "", 300, 175, 205);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");
@@ -66,89 +67,75 @@
   h2->Draw();
 
   //Start of FWHM Section
+  //Finding HalfMaxYValue
   Double_t BinWithMostCounts = h1->GetMaximumBin();
-  cout << "Bin With Most Counts:" << endl;
-  cout << BinWithMostCounts << endl;
   Double_t MaxYValue = h1->GetBinContent(BinWithMostCounts);
-  cout << "Most Counts in 1 bin:" << endl;
-  cout << MaxYValue << endl;
   Double_t HalfMaxYValue = MaxYValue/2;
-  cout << "Half of Max Counts:" << endl;
-  cout << HalfMaxYValue << endl;
 
-  for (Int_t i = 0; i < 300; i++)
-	{
-	Double_t x = h1->GetBinContent(i);
-	if (x == HalfMaxYValue)
-		{
-		cout << "The bin number with HalfMaxYValue contents is:" << endl;
-		cout << i << endl;
-		}
-	//Lower Bound
-	else if ((x > (HalfMaxYValue-50)) && (x < HalfMaxYValue))
-		{
-		cout << "A lower bin number was found with a number of counts close to HalfMaxYValue." << endl;
-		cout << i << endl;
-		cout << h1->GetBinContent(i) << endl;
-		}
-	//Upper Bound
-	else if ((x < (HalfMaxYValue+50)) && (x > HalfMaxYValue))
-		{
-		cout << "An upper bin number was found with a number of counts close to HalfMaxYValue." << endl;
-		cout << i << endl;
-		cout << h1->GetBinContent(i) << endl;
-		}
+  //Finding HalfMaxYValue bin on left-hand side of peak
+  Double_t FWHMLeftXValue = 0;
+  int binA = 0;
+  //This searches for the bin in the range of bin 0 and BinWithMostCounts
+  h1->GetBinWithContent(HalfMaxYValue, binA, 0, BinWithMostCounts, 0);
+  //The if condition pertains if no bin was found with content of HalfMaxYValue
+  if (binA == 0)
+  	{
+	//Finding the first bin (on the left-hand side of the max peak) that has contents above HalfMaxYValue (Lower2)
+	//Not sure why but second parameter has to be 1 when using this search ability
+	Double_t Lower2 = h1->FindFirstBinAbove(HalfMaxYValue, 1, 0, BinWithMostCounts);
+	Double_t Lower2Contents = h1->GetBinContent(Lower2);
+
+	//Finding the bin below HalfMaxYValue on the left-hand side of the max peak (Lower1)
+	Double_t Lower1 = Lower2 - 1;
+	Double_t Lower1Contents = h1->GetBinContent(Lower1);
+
+	//Finding an approximation for the bin x-value with HalfMaxYValue on the left-hand side of the max peak
+	Double_t LowerBinFraction = Lower1Contents/Lower2Contents;
+	Double_t CenterLower1 = h1->GetBinCenter(Lower1);
+	Double_t CenterLower2 = h1->GetBinCenter(Lower2);
+	Double_t LowerBinWidth = CenterLower2 - CenterLower1;
+	FWHMLeftXValue = CenterLower1 + (LowerBinWidth)*(LowerBinFraction);
 	}
 
-/*  cout << "Content of Bin 258:" << endl;
-  cout << h1->GetBinContent(258) << endl;
-  cout << "Contents of Bin 226:" << endl;
-  cout << h1->GetBinContent(226) << endl;
-  cout << "Contents of Bin 259:" << endl;
-  cout << h1->GetBinContent(259) << endl;
-*/
-  //Getting bin center that roughly corresponds to HalfMaxYValue on lower threshold
-  Double_t LowerWholeBinFraction = h1->GetBinContent(225)/h1->GetBinContent(226);
-  cout << "Lower Bin Fraction:" << endl;
-  cout << LowerWholeBinFraction << endl;
-  cout << "x-value corresponding to the center of bin 225:" << endl;
-  Double_t Center225 = h1->GetBinCenter(225);
-  cout << Center225 << endl;
-  Double_t Center226 = h1->GetBinCenter(226);
-  cout << "x-value corresponding to the center of bin 226:" << endl;
-  cout << Center226 << endl;
-  Double_t LowerBinWidth = Center226 - Center225;
-  cout << "Lower Bin Width:" << endl;
-  cout << LowerBinWidth << endl;
+  //The else if condition pertains if a bin was found with content of HalfMaxYValue
+  else if (binA != 0)
+  	{
+	FWHMLeftXValue = h1->GetBinCenter(binA);
+	}
 
-  Double_t LowerXValue = Center225 + (LowerBinWidth)*(LowerWholeBinFraction);
-  cout << "/////////////////////////////////////" << endl;
-  cout << LowerXValue << endl;
-  cout << "/////////////////////////////////////" << endl;
+  //Finding HalfMaxYValue bin on right-hand side of peak
+  Double_t FWHMRightXValue = 0;
+  int binB = 0;
+  //This searches for the bin in the range of BinWithMostCounts and bin 300, which is the last bin
+  h1->GetBinWithContent(HalfMaxYValue, binB, BinWithMostCounts, 300, 0);
+  //The if condition pertains if no bin was found with content of HalfMaxYValuei
+  if (binB == 0)
+  	{
+	//Finding the last bin (on the right-hand side of the max peak) that has contents above HalfMaxYValue (Upper1)
+	//Not sure why but second parameter has to be 1 when using this search ability
+	Double_t Upper1 = h1->FindLastBinAbove(HalfMaxYValue, 1, BinWithMostCounts, 300);
+	Double_t Upper1Contents = h1->GetBinContent(Upper1);
 
-  //Getting bin center that roughly corresponds to HalfMaxYValue on upper threshold
-  Double_t UpperWholeBinFraction = h1->GetBinContent(259)/h1->GetBinContent(258);
-  cout << "Upper Bin Fraction:" << endl;
-  cout << UpperWholeBinFraction << endl;
-  cout << "x-value corresponding to the center of bin 258:" << endl;
-  Double_t Center258 = h1->GetBinCenter(258);
-  cout << Center258 << endl;
-  Double_t Center259 = h1->GetBinCenter(259);
-  cout << "x-value corresponding to the center of bin 259:" << endl;
-  cout << Center259 << endl;
-  Double_t UpperBinWidth = Center259 - Center258;
-  cout << "Upper Bin Width:" << endl;
-  cout << UpperBinWidth << endl;
+	//Finding the bin below HalfMaxYValue on the right-hand side of the max peak (Upper2)
+	Double_t Upper2 = Upper1 + 1;
+	Double_t Upper2Contents = h1->GetBinContent(Upper2);
 
-  Double_t UpperXValue = Center259 + (UpperBinWidth)*(UpperWholeBinFraction);
-  cout << "//////////////////////////////////////" << endl;
-  cout << UpperXValue << endl;
-  cout << "//////////////////////////////////////" << endl;
+	//Finding an approximation for the bin x-value with HalfMaxYValue on the right-hand side of the max peak
+	Double_t UpperBinFraction = Upper2Contents/Upper1Contents;
+	Double_t CenterUpper1 = h1->GetBinCenter(Upper1);
+	Double_t CenterUpper2 = h1->GetBinCenter(Upper2);
+	Double_t UpperBinWidth = CenterUpper2 - CenterUpper1;
+	FWHMRightXValue = CenterUpper2 + (UpperBinWidth)*(UpperBinFraction);
+	}
 
-  //Final width
-  Double_t FinalWidth = UpperXValue - LowerXValue;
-  cout << "Final width for the FWHM calculation:" << endl;
-  cout << FinalWidth << endl;
+  //The else if condition pertains if a bin was found with content of HalfMaxYValue
+  else if (binB != 0)
+  	{
+	FWHMRightXValue = h1->GetBinCenter(binB);
+	}
+
+  //Finding the FWHM
+  Double_t FinalWidth = FWHMRightXValue - FWHMLeftXValue;
   Double_t FWHM = (FinalWidth/200)*100;
   cout << "FWHM:" << endl;
   cout << FWHM << endl;
