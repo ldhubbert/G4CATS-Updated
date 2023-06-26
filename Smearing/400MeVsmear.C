@@ -13,17 +13,17 @@
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.15(sqrt(photon beam)), since we want to smear the results by 15%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.14(sqrt(photon beam)), since we want to smear the results by 14%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
-  TF1 *f1 = new TF1("f1", "gaus(0)", -10.5, 10.5);
+  TF1 *f1 = new TF1("f1", "gaus(0)", -10, 10);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/((0.15*TMath::Sqrt(400))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, (1/((0.14*TMath::Sqrt(400))*(TMath::Sqrt(2*TMath::Pi())))));
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
-  f1->SetParameter(2, (0.15*TMath::Sqrt(400)));
+  f1->SetParameter(2, (0.14*TMath::Sqrt(400)));
 
   //Looking for the branch, "B4", in file f (the 400MeV output file)
   TTreeReader r1("B4", &f);
@@ -39,7 +39,7 @@
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
 
   //Create histogram
-  TH1F *h1 = new TH1F("Histogram 2", "h1", 500, 355, 405);
+  TH1F *h1 = new TH1F("Histogram 2", "h1", 500, 365, 415);
 
   //The while loop goes through each branch and reads entries.
   //So for the first time around the loop, entry 1 is read from each branch (Ecore up to Eann6)
@@ -51,13 +51,13 @@
   TLine *line = new TLine(400, 0, 400, 5900);
 
   h1->Draw();
-  h1->SetTitle("15% Gaussian Smear on 400MeV Beam");
+  h1->SetTitle("14% Gaussian Smear on 400MeV Beam");
 
   line->Draw();
 
   //Compare to normal 400MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 500, 355, 405);
+  TH1F *h2 = new TH1F("Histogram 1", "", 500, 365, 415);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");
@@ -97,7 +97,7 @@
 	}
 
   //The else if condition pertains if a bin was found with content of HalfMaxYValue
-  else if (binA != 0);
+  else if (binA != 0)
   	{
 	FWHMLeftXValue = h1->GetBinCenter(binA);
 	}

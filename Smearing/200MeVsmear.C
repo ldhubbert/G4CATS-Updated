@@ -13,18 +13,18 @@
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.08(sqrt(photon beam)), since we want to smear the results by 8%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.09(sqrt(photon beam)), since we want to smear the results by 9%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
-  TF1 *f1 = new TF1("f1", "gaus(0)", -4.5, 4.5);
+  TF1 *f1 = new TF1("f1", "gaus(0)", -5, 5);
   //Fraction being raised to power
-  //f1->SetParameter(0, (1/((0.08*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi())))));
+  //f1->SetParameter(0, (1/((0.09*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi())))));
   f1->SetParameter(0, 1);
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
-  f1->SetParameter(2, (0.08*TMath::Sqrt(200)));
+  f1->SetParameter(2, (0.09*TMath::Sqrt(200)));
 
   //Looking for the branch, "B4", in file f (the 200MeV output file)
   TTreeReader r1("B4", &f);
@@ -40,7 +40,7 @@
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
 
   //Create histogram
-  TH1F *h1 = new TH1F("Histogram 2", "h1", 300, 175, 205);
+  TH1F *h1 = new TH1F("Histogram 2", "h1", 300, 180, 210);
 
   //The while loop goes through each branch and reads entries.
   //So for the first time around the loop, entry 1 is read from each branch (Ecore up to Eann6)
@@ -49,16 +49,16 @@
 	//cout << *Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + * Eann5 + *Eann6 + f1->GetRandom() << endl;
 	h1->Fill(*Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + *Eann5 + *Eann6 + f1->GetRandom());
   } 
-  TLine *line = new TLine(200, 0, 200, 5900);
+  TLine *line = new TLine(200, 0, 200, 2100);
 
   h1->Draw();
-  h1->SetTitle("8% Gaussian Smear on 200MeV Beam");
+  h1->SetTitle("9% Gaussian Smear on 200MeV Beam");
 
   line->Draw();
 
   //Compare to normal 200MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 300, 175, 205);
+  TH1F *h2 = new TH1F("Histogram 1", "", 300, 180, 210);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");
@@ -144,6 +144,6 @@
   c1->cd(2);
   TString FWHM_string;
   FWHM_string = Form("FWHM: %lf", FWHM);
-  TPaveLabel *a = new TPaveLabel(80,3000,85,3500, FWHM_string);
+  TPaveLabel *a = new TPaveLabel(182,1700,188,2000, FWHM_string);
   a->Draw();
 }

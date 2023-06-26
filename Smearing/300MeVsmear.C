@@ -13,17 +13,17 @@
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.1(sqrt(photon beam)), since we want to smear the results by 10%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.12(sqrt(photon beam)), since we want to smear the results by 12%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
-  TF1 *f1 = new TF1("f1", "gaus(0)", -6.5, 6.5);
+  TF1 *f1 = new TF1("f1", "gaus(0)", -8.5, 8.5);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/((0.1*TMath::Sqrt(300))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, (1/((0.12*TMath::Sqrt(300))*(TMath::Sqrt(2*TMath::Pi())))));
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
-  f1->SetParameter(2, (0.1*TMath::Sqrt(300)));
+  f1->SetParameter(2, (0.12*TMath::Sqrt(300)));
 
   //Looking for the branch, "B4", in file f (the 300MeV output file)
   TTreeReader r1("B4", &f);
@@ -39,7 +39,7 @@
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
 
   //Create histogram
-  TH1F *h1 = new TH1F("Histogram 2", "h1", 400, 265, 305);
+  TH1F *h1 = new TH1F("Histogram 2", "h1", 400, 270, 310);
 
   //The while loop goes through each branch and reads entries.
   //So for the first time around the loop, entry 1 is read from each branch (Ecore up to Eann6)
@@ -51,13 +51,13 @@
   TLine *line = new TLine(300, 0, 300, 5900);
 
   h1->Draw();
-  h1->SetTitle("10% Gaussian Smear on 300MeV Beam");
+  h1->SetTitle("12% Gaussian Smear on 300MeV Beam");
 
   line->Draw();
 
   //Compare to normal 300MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 400, 265, 305);
+  TH1F *h2 = new TH1F("Histogram 1", "", 400, 270, 310);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");

@@ -1,32 +1,32 @@
 #include <TMath.h>
 {
   //Open file filled by Geant4 simulation 
-  TFile f("~/Vincent/G4CATS/Out/B4_500MeV.root");
+  TFile f("~/Vincent/G4CATS/Out/B4_300MeV.root");
 
-  //Create a canvas and divide it into 2x2 pads
+  //Create a canvas and divide it into 2 pads
   TCanvas* c1 = new TCanvas("c1", "", 20, 20, 1000, 1000);
   c1->Divide(1,2);
 
-  //Draw Eabs histogram in the pad 2
+  //Draw smeared histogram in the pad 2
   c1->cd(2);
 
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.16(sqrt(photon beam)), since we want to smear the results by 16%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.0075, since we want to smear the results by 0.75%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
-  TF1 *f1 = new TF1("f1", "gaus(0)", -12, 12);
+  TF1 *f1 = new TF1("f1", "gaus", 0, 2);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/((0.16*TMath::Sqrt(500))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, (1/((0.0075)*(TMath::Sqrt(2*TMath::Pi())))));
   //f1->SetParameter(0, 1);
   //Mean
-  f1->SetParameter(1, 0);
+  f1->SetParameter(1, 1);
   //Standard Deviation
-  f1->SetParameter(2, (0.16*TMath::Sqrt(500)));
+  f1->SetParameter(2, 0.0075);
 
-  //Looking for the branch, "B4", in file f (the 500MeV output file)
+  //Looking for the branch, "B4", in file f (the 300MeV output file)
   TTreeReader r1("B4", &f);
 
   //Reading each branch below as defined in B4
@@ -40,40 +40,37 @@
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
 
   //Create histogram
-  TH1F *h1 = new TH1F("h1", "h1", 600, 455, 515);
+  TH1F *h1 = new TH1F("Histogram 2", "h1", 400, 270, 310);
 
   //The while loop goes through each branch and reads entries.
   //So for the first time around the loop, entry 1 is read from each branch (Ecore up to Eann6)
   while (r1.Next())
   {
-	//cout << *Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + * Eann5 + *Eann6 + f1->GetRandom() << endl;
-	h1->Fill(*Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + *Eann5 + *Eann6 + f1->GetRandom());
-  }
+	h1->Fill((*Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + *Eann5 + *Eann6)*(f1->GetRandom()));
+  } 
 
-  TLine *line = new TLine(500, 0, 500, 7000);
+  TLine *line = new TLine(300, 0, 300, 1325);
 
   h1->Draw();
-  h1->SetTitle("16% Gaussian Smear on 500MeV Beam");
+  h1->SetTitle("0.75% Gaussian Smear on 300MeV Beam");
 
   line->Draw();
 
-  //Compare to normal 500MeV Histogram (taken from code in Histogram folder)
+  //Compare to normal 300MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 600, 455, 515);
+  TH1F *h2 = new TH1F("Histogram 1", "", 400, 270, 310);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");
   h2->GetYaxis()->SetTitle("Counts");
-  h2->SetTitle("500MeV Beam Before Smearing");
+  h2->SetTitle("300MeV Beam Before Smearing");
   h2->Draw();
-  c1->cd(2);
 
   //Start of FWHM Section
-  //Finding HalfMaxYValue
   Double_t BinWithMostCounts = h1->GetMaximumBin();
   Double_t MaxYValue = h1->GetBinContent(BinWithMostCounts);
   Double_t HalfMaxYValue = MaxYValue/2;
-
+ 
   //Finding HalfMaxYValue bin on left-hand side of peak
   Double_t FWHMLeftXValue = 0;
   int binA = 0;
@@ -82,7 +79,7 @@
   //The if condition pertains if no bin was found with content of HalfMaxYValue
   if (binA == 0)
   	{
-	//Finding the first bin (on the elft-hand side of the max peak) that has contents above HalfMaxYValue (Lower2)
+	//Finding the first bin (on the left-hand side of the max peak) that has contents above HalfMaxYValue (Lower2)
 	//Not sure why but second parameter has to be 1 when using this search ability
 	Double_t Lower2 = h1->FindFirstBinAbove(HalfMaxYValue, 1, 0, BinWithMostCounts);
 	Double_t Lower2Contents = h1->GetBinContent(Lower2);
@@ -105,25 +102,25 @@
 	FWHMLeftXValue = h1->GetBinCenter(binA);
 	}
 
-  //Finding HalfMaxYValue on right=hand side of peak
+  //Finding HalfMaxYValue bin on right-hand side of peak
   Double_t FWHMRightXValue = 0;
   int binB = 0;
-  //This searches for the bin in the range of BinWithMostCounts and bin 600, which is the last bin
-  h1->GetBinWithContent(HalfMaxYValue, binB, BinWithMostCounts, 600, 0);
+  //This searches for the bin in the range of BinWithMostCounts and bin 400, which is the last bin
+  h1->GetBinWithContent(HalfMaxYValue, binB, BinWithMostCounts, 400, 0);
   //The if condition pertains if no bin was found with content of HalfMaxYValue
   if (binB == 0)
   	{
 	//Finding the last bin (on the right-hand side of the max peak) that has contents above HalfMaxYValue (Upper1)
 	//Not sure why but second parameter has to be 1 when using this search ability
-	Double_t Upper1 = h1->FindLastBinAbove(HalfMaxYValue, 1, BinWithMostCounts, 600);
+	Double_t Upper1 = h1->FindLastBinAbove(HalfMaxYValue, 1, BinWithMostCounts, 400);
 	Double_t Upper1Contents = h1->GetBinContent(Upper1);
-
+	 
 	//Finding the bin below HalfMaxYValue on the right-hand side of the max peak (Upper2)
 	Double_t Upper2 = Upper1 + 1;
 	Double_t Upper2Contents = h1->GetBinContent(Upper2);
 
 	//Finding an approximation for the bin x-value with HalfMaxYValue on the right-hand side of the max peak
-	Double_t UpperBinFraction = Upper2Contents/Upper1Contents;
+ 	Double_t UpperBinFraction = Upper2Contents/Upper1Contents;
 	Double_t CenterUpper1 = h1->GetBinCenter(Upper1);
 	Double_t CenterUpper2 = h1->GetBinCenter(Upper2);
 	Double_t UpperBinWidth = CenterUpper2 - CenterUpper1;
@@ -138,14 +135,14 @@
 
   //Finding the FWHM
   Double_t FinalWidth = FWHMRightXValue - FWHMLeftXValue;
-  Double_t FWHM = (FinalWidth/500)*100;
+  Double_t FWHM = (FinalWidth/300)*100;
   cout << "FWHM:" << endl;
   cout << FWHM << endl;
 
-  //Displaying FWHM on bottom pad
+  //Display FWHM on bottom pad 
   c1->cd(2);
   TString FWHM_string;
   FWHM_string = Form("FWHM: %lf", FWHM);
-  TPaveLabel *a = new TPaveLabel(80,3000,85,3500, FWHM_string);
+  TPaveLabel *a = new TPaveLabel(272,1050,280,1250, FWHM_string);
   a->Draw();
 }

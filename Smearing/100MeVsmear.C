@@ -13,17 +13,17 @@
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.08(sqrt(photon beam)), since we want to smear the results by 8%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.07(sqrt(photon beam)), since we want to smear the results by 7%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
   TF1 *f1 = new TF1("f1", "gaus(0)", -3, 3);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/((0.08*TMath::Sqrt(100))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, (1/((0.07*TMath::Sqrt(100))*(TMath::Sqrt(2*TMath::Pi())))));
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
-  f1->SetParameter(2, (0.08*TMath::Sqrt(100)));
+  f1->SetParameter(2, (0.07*TMath::Sqrt(100)));
 
   //Looking for the branch, "B4", in file f (the 100MeV output file)
   TTreeReader r1("B4", &f);
@@ -39,7 +39,7 @@
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
 
   //Create histogram
-  TH1F *h1 = new TH1F("Histogram 2", "h1", 200, 83, 103);
+  TH1F *h1 = new TH1F("Histogram 2", "h1", 200, 85, 105);
 
   //The while loop goes through each branch and reads entries.
   //So for the first time around the loop, entry 1 is read from each branch (Ecore up to Eann6)
@@ -48,16 +48,16 @@
 	//cout << *Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + * Eann5 + *Eann6 + f1->GetRandom() << endl;
 	h1->Fill(*Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + *Eann5 + *Eann6 + f1->GetRandom());
   } 
-  TLine *line = new TLine(100, 0, 100, 5900);
+  TLine *line = new TLine(100, 0, 100, 3900);
 
   h1->Draw();
-  h1->SetTitle("8% Gaussian Smear on 100MeV Beam");
+  h1->SetTitle("7% Gaussian Smear on 100MeV Beam");
 
   line->Draw();
 
   //Compare to normal 100MeV Histogram (taken from code in Histogram folder)
   c1->cd(1);
-  TH1F *h2 = new TH1F("Histogram 1", "", 200, 75, 105);
+  TH1F *h2 = new TH1F("Histogram 1", "", 200, 85, 105);
   TTree *B4 = (TTree*)f.Get("B4");
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>Histogram 1");
   h2->GetXaxis()->SetTitle("Energy (MeV)");
@@ -119,7 +119,7 @@
 	Double_t Upper2 = Upper1 + 1;
 	Double_t Upper2Contents = h1->GetBinContent(Upper2);
 
-	//Finding an approximatoin for the bin x-value with HalfMaxYValue on the right-hand side of the max peak
+	//Finding an approximation for the bin x-value with HalfMaxYValue on the right-hand side of the max peak
 	Double_t UpperBinFraction = Upper2Contents/Upper1Contents;
 	Double_t CenterUpper1 = h1->GetBinCenter(Upper1);
 	Double_t CenterUpper2 = h1->GetBinCenter(Upper2);
@@ -143,6 +143,6 @@
   c1->cd(2);
   TString FWHM_string;
   FWHM_string = Form("FWHM: %lf", FWHM);
-  TPaveLabel *a = new TPaveLabel(80,3000,85,3500, FWHM_string);
+  TPaveLabel *a = new TPaveLabel(86,3000,90,3500, FWHM_string);
   a->Draw();
 }
