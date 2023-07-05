@@ -19,8 +19,7 @@
 
   TF1 *f1 = new TF1("f1", "gaus(0)", -5, 5);
   //Fraction being raised to power
-  //f1->SetParameter(0, (1/((0.09*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi())))));
-  f1->SetParameter(0, 1);
+  f1->SetParameter(0, (1/((0.09*TMath::Sqrt(200))*(TMath::Sqrt(2*TMath::Pi())))));
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
@@ -38,7 +37,7 @@
   TTreeReaderValue<Double_t> Eann4(r1, "Eann4");
   TTreeReaderValue<Double_t> Eann5(r1, "Eann5");
   TTreeReaderValue<Double_t> Eann6(r1, "Eann6");
-
+  
   //Create histogram
   TH1F *h1 = new TH1F("Histogram 2", "h1", 300, 180, 210);
 

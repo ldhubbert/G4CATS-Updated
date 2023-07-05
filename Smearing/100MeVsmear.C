@@ -2,11 +2,11 @@
 {
   //Open file filled by Geant4 simulation 
   TFile f("~/Vincent/G4CATS/Out/B4_100MeV.root");
-
+  
   //Create a canvas and divide it into 2 pads
   TCanvas* c1 = new TCanvas("c1", "", 20, 20, 1000, 1000);
   c1->Divide(1,2);
-
+ 
   //Draw Eabs histogram in the pad 2
   c1->cd(2);
 
@@ -145,4 +145,8 @@
   FWHM_string = Form("FWHM: %lf", FWHM);
   TPaveLabel *a = new TPaveLabel(86,3000,90,3500, FWHM_string);
   a->Draw();
+
+  //Save file results to a .root file that can be accessed by other files
+  //TFile test("100MeVsmear.root", "recreate");
+
 }

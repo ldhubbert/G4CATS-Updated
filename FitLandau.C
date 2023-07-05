@@ -19,7 +19,7 @@
   B4->Draw("Ecore+Eann1+Eann2+Eann3+Eann4+Eann5+Eann6>>h1(200,450.,505)");
   TF1 f1("f1","[0] * TMath::Landau([1]-x, 0., [2])", 450., 505);
   
-  //Note: the [0] parameter is for amplitude. the [1] paramter is for the mean of the histogram. the [2] parameter is for the width of the Lamdau curve.
+  //Note: the [0] parameter is for amplitude. the [1] paramter is for the mean of the histogram. the [2] parameter is for the width of the Landau curve.
   //HOWEVER, [0] and [2] are kind of arbitrary since the graph calculates most of the parameters on its own. So, I set both equal to 1.
   f1.SetParameters(1, h1->GetMean(), 1);
   //f1.SetParameters(50000, 498.4, 1);

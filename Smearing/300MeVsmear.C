@@ -13,17 +13,17 @@
   //Smearing the data:
   //STEP ONE
   //To smear the data, first we need to make a Gaussian distribution to simulate the detector efficiency.
-  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.12(sqrt(photon beam)), since we want to smear the results by 12%.
+  //The mean of this Gaussian will be 0MeV, and the standard deviation will be 0.11(sqrt(photon beam)), since we want to smear the results by 11%.
   //The more we want to smear the results by, the wider the Gaussian curve will be, attributing more error to the histogram results.
   //gaus(0) refers to a Gaussian distribution with parameters as commented below
 
   TF1 *f1 = new TF1("f1", "gaus(0)", -8.5, 8.5);
   //Fraction being raised to power
-  f1->SetParameter(0, (1/((0.12*TMath::Sqrt(300))*(TMath::Sqrt(2*TMath::Pi())))));
+  f1->SetParameter(0, (1/((0.11*TMath::Sqrt(300))*(TMath::Sqrt(2*TMath::Pi())))));
   //Mean
   f1->SetParameter(1, 0);
   //Standard Deviation
-  f1->SetParameter(2, (0.12*TMath::Sqrt(300)));
+  f1->SetParameter(2, (0.11*TMath::Sqrt(300)));
 
   //Looking for the branch, "B4", in file f (the 300MeV output file)
   TTreeReader r1("B4", &f);
@@ -48,10 +48,10 @@
 	//cout << *Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + * Eann5 + *Eann6 + f1->GetRandom() << endl;
 	h1->Fill(*Ecore + *Eann1 + *Eann2 + *Eann3 + *Eann4 + *Eann5 + *Eann6 + f1->GetRandom());
   } 
-  TLine *line = new TLine(300, 0, 300, 5900);
+  TLine *line = new TLine(300, 0, 300, 1475);
 
   h1->Draw();
-  h1->SetTitle("12% Gaussian Smear on 300MeV Beam");
+  h1->SetTitle("11% Gaussian Smear on 300MeV Beam");
 
   line->Draw();
 
@@ -143,6 +143,6 @@
   c1->cd(2);
   TString FWHM_string;
   FWHM_string = Form("FWHM: %lf", FWHM);
-  TPaveLabel *a = new TPaveLabel(80,3000,85,3500, FWHM_string);
+  TPaveLabel *a = new TPaveLabel(272,1200,280,1400, FWHM_string);
   a->Draw();
 }

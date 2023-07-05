@@ -1,19 +1,23 @@
-#include "TMath.h"
+//#include "TF1.h"
+//#include "TMath.h"
+
 Double_t MyMethod(Double_t *x, Double_t *par)
 {
-	Double_t a = x[0];
-	Double_t func = par[0] * ((1/(par[2]*TMath::Sqrt(2*TMath::Pi()))) * TMath::Power(TMath::E(), -0.5*((a-par[1])/par[2])*((a-par[1])/par[2])));
 
-	return func;
+	Double_t exponent = ((-((x[0] - par[2])/par[3]) - par[0]) * (-((x[0] - par[2])/par[3]) - par[0])) / (2 * par[1] * par[1]);
+	Double_t erf_top_limit = par[4] * (x[0] - par[2]) / (par[3] * TMath::Sqrt(2));
+	Double_t function = (1 / (par[3] * par[1] * TMath::Sqrt(2 * TMath::Pi()))) * TMath::Exp(exponent) * (1 + TMath::Erf(erf_top_limit));
+
+	return function;
+
 }
-
-void maincode()
+int main()
 {
 	//Normal Histogram Stuff
 	//gStyle->SetOptTitle(1);
 	//gStyle->SetOptStat(0);
 	TCanvas* c1 = new TCanvas("c1", "", 20, 20, 1000, 1000);
-	c1->Divide(1,1);
+	c1->Divide(1,2);
 	c1->cd(1);
 
 	TString filename = "~/Vincent/G4CATS/Out/B4_200MeV.root";
@@ -47,41 +51,35 @@ void maincode()
   	Double_t CenterPeak = h1->GetBinCenter(BinWithMostCounts);
 	Double_t StdDev = h1->GetStdDev();
 
-  	//testing Integral function
-  	//TF1 *test = new TF1("test", "cos(x)", 0, 10);
-  	//Double_t a = test->TF1::Integral(2,4);
-  	//cout << a << endl;
+	c1->cd(2);
 
-  	//Skewed Gaussian Formula
-  	//TF1 *integral_function = new TF1("integral_function", "TMath::Power(TMath::E(), -1*x[0]*x[0])", -1*TMath::Infinity(), TMath::Infinity());
-  	//TF1 *f1 = new TF1("f1", "((2 * TMath::Power(TMath::E(),(TMath::Power((-((x[0] - [0])/[2]) - [3]),2))/(2*TMath::Power([4],2))) * (1 + 2/TMath::Sqrt(TMath::Pi()) * integral_function->Integral(0,([5]*(x[0] - [0]))/([2]*TMath::Sqrt(2))))", 180, 210);
-  	//f1->SetParameter(1, 200);
-  	//f1->SetParameter(2, 200);
-  	//f1->SetParameter(3, MaxYValue);
-  	//f1->SetParameter(4, h1->GetStdDev());
-  	//f1->SetParameter(5, -10);
-  	//f1->Draw("SAME");
-  
-  	//Trying out TwoBody strategy
-  	TF1 *lol = new TF1("lol", MyMethod, 180, 210, 3);
-	lol->SetParameter(0, 1);
-  	lol->SetParameter(1, CenterPeak);
-	//lol->SetParameter(2, StdDev);
-	lol->SetParameter(2, 1);
+	TF1 *graph_function = new TF1("graph_function", MyMethod, 180, 210, 5);
+
+	//0 is the mean; 1 is the standard deviation; 2 is E; 3 is w; 4 is a (the shape parameter)
+	graph_function->SetParameter(0, CenterPeak);
+	graph_function->SetParameter(1, StdDev);
+	graph_function->SetParameter(2, 0);
+	graph_function->SetParameter(3, 1);
+	graph_function->SetParameter(4, -10);
  
 	//These parameters must be the same as those set to the TF1 function above
-	Double_t parameters[3] = {1,CenterPeak,1};
+/*	Double_t parameters[5] = {CenterPeak, StdDev, 0, 1, -10};
 
-	Double_t b = MyMethod(&CenterPeak, parameters);
+	
+
+	Double_t max = 14000;
+	Double_t haha = 199.95;
+	Double_t b = MyMethod2(MyMethod1, &haha, parameters);
 	cout << b << endl;
-	Double_t c = (MaxYValue / b);
+	Double_t c = (max / b);
 	cout << c << endl;
 	lol->SetParameter(0, c);
-	
+*/	
 	
 
-	lol->Draw("SAME");
+	graph_function->Draw("SAME");
 
+	return 0;
 	
 }
 

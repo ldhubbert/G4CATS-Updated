@@ -1,11 +1,19 @@
+#include "TF1.h"
 #include "TMath.h"
-Double_t MyMethod(Double_t *x, Double_t *par)
+Double_t MyMethod1(Double_t *x, Double_t *par)
 {
-	Double_t a = x[0];
-	Double_t func = par[0] * ((1/(par[2]*TMath::Sqrt(2*TMath::Pi()))) * TMath::Power(TMath::E(), -0.5*((a-par[1])/par[2])*((a-par[1])/par[2])));
+	TF1 *inttest = new TF1("inttest", "TMath::Power(TMath::E(),-1*x*x)", -1*TMath::Infinity(), TMath::Infinity());
+	Double_t integral_answer = inttest->Integral(0,(par[4]*(x[0] - par[0]))/(par[1]*TMath::Sqrt(2)));
 
-	return func;
+	return integral_answer;
 }
+
+//Double_t MyMethod2(Double_t (*PointerToMyMethod1)(Double_t *, Double_t*), Double_t *x, Double_t *par)
+//{
+//	Double_t func2 = ((2 * TMath::Power(TMath::E(),(TMath::Power((-((x[0] - par[0])/par[1]) - par[2]),2)/(2*par[3]*par[3])) * (1 + 2/TMath::Sqrt(TMath::Pi()) * PointerToMyMethod1(x, par))))/(2*par[1]*par[3]*TMath::Sqrt(2*TMath::Pi())));
+
+//	return func2;
+//}
 
 void maincode()
 {
@@ -16,7 +24,7 @@ void maincode()
 	c1->Divide(1,1);
 	c1->cd(1);
 
-	TString filename = "~/Vincent/G4CATS/Out/B4_200MeV.root";
+/*	TString filename = "~/Vincent/G4CATS/Out/B4_200MeV.root";
 	TFile *f = TFile::Open(filename);
 
 	TH1F* h1 = new TH1F("Histogram Statistics", "", 300, 180, 210);
@@ -46,7 +54,7 @@ void maincode()
   	Double_t MaxYValue = h1->GetBinContent(BinWithMostCounts);
   	Double_t CenterPeak = h1->GetBinCenter(BinWithMostCounts);
 	Double_t StdDev = h1->GetStdDev();
-
+*/
   	//testing Integral function
   	//TF1 *test = new TF1("test", "cos(x)", 0, 10);
   	//Double_t a = test->TF1::Integral(2,4);
@@ -63,24 +71,47 @@ void maincode()
   	//f1->Draw("SAME");
   
   	//Trying out TwoBody strategy
-  	TF1 *lol = new TF1("lol", MyMethod, 180, 210, 3);
-	lol->SetParameter(0, 1);
-  	lol->SetParameter(1, CenterPeak);
-	//lol->SetParameter(2, StdDev);
-	lol->SetParameter(2, 1);
+
+	//Double_t (*PointerToMyMethod1)(Double_t*, Double_t*) = MyMethod1;
+	//Double_t result = MyMethod2(PointerToMyMethod1, x, par);
+
+/*	Double_t par[5];
+	par[0] = 200;
+	par[1] = 1;
+	par[2] = 200;
+	par[3] = 1;
+	par[4] = -10;
+*/
+	TF1 *lol = new TF1("lol", [&](Double_t *x, Double_t *par){ return ((2 * TMath::Power(TMath::E(),(TMath::Power((-((x[0] - par[0])/par[1]) - par[2]),2)/(2*par[3]*par[3])) * (1 + 2/TMath::Sqrt(TMath::Pi()) * MyMethod1(x, par))))/(2*par[1]*par[3]*TMath::Sqrt(2*TMath::Pi()))); }, 180, 210, 3);
+
+	Double_t par[5];
+	par[0] = 200;
+	par[1] = 1;
+	par[2] = 200;
+	par[3] = 1;
+	par[4] = -10;
+
+  	//TF1 *lol = new TF1("lol", MyMethod2, 180, 210, 3);
+
+	//lol->SetParameter(0, 199.95);
+	//lol->SetParameter(1, 1);
+	//lol->SetParameter(2, 100);
+	//lol->SetParameter(3, 1);
  
 	//These parameters must be the same as those set to the TF1 function above
-	Double_t parameters[3] = {1,CenterPeak,1};
+/*	Double_t parameters[3] = {1,199.95,1};
 
-	Double_t b = MyMethod(&CenterPeak, parameters);
+	Double_t max = 14000;
+	Double_t haha = 199.95;
+	Double_t b = MyMethod2(MyMethod1, &haha, parameters);
 	cout << b << endl;
-	Double_t c = (MaxYValue / b);
+	Double_t c = (max / b);
 	cout << c << endl;
 	lol->SetParameter(0, c);
 	
-	
+*/	
 
-	lol->Draw("SAME");
+	lol->Draw();
 
 	
 }
