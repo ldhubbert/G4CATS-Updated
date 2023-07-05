@@ -20,22 +20,22 @@ void maincode()
 
 	//Defining arrays to be filled with data from the "for" loop
 	int array_size = 11;
-	double x_values[array_size];
-	double y_values[array_size];
-	double y_value_errors[array_size];
-	double y_smeared_errors[array_size];
-	double gaussian_sigma[array_size];
-	double smeared_data_points[array_size];
+	Double_t x_values[array_size];
+	Double_t y_values[array_size];
+	Double_t y_value_errors[array_size];
+	Double_t y_smeared_errors[array_size];
+	Double_t gaussian_sigma[array_size];
+	Double_t smeared_data_points[array_size];
 
 	//In order to place results from the "for" loop into the arrays, x has to be an integer
 	//Since we actually want to go from x = 0 to x = 1 in 0.1 steps, divide x by 10 in the "for" loop
 	for (int x = 0; x <= 10; x++)
 	{
 		//Since x is an integer, it has to be momentarily changed to a double for this calculation to work
-		double realx = static_cast<double>(x)/10;
+		Double_t realx = static_cast<Double_t>(x)/10;
 		x_values[x] = realx;
 		//y_values array are filled with the y-values of this exponential decay function
-		double function = TMath::Exp(-1*realx);
+		Double_t function = TMath::Exp(-1*realx);
 		y_values[x] = function;
 		y_value_errors[x] = 0.05*y_values[x];
 
@@ -50,7 +50,7 @@ void maincode()
 	}
 	
 	//We want error bars in the x-direction to be zero, so fill the x_value_errors array with zeroes
-	double x_value_errors[array_size];
+	Double_t x_value_errors[array_size];
 	for (int i = 0; i <= 10; i++)
 	{
 		x_value_errors[i] = 0;
@@ -91,10 +91,9 @@ void maincode()
 	unsmeared->Draw("AP");
 
 	//Fit exponential decay curve to smeared data
-	//Starting at x = -0.1 so that the fitted line includes x = 0
 	//Third parameter means there is one parameter (par[0] in the Double_t method at the top of the code)
 	//The computer will give us the best par[0] value for this fit
-	TF1 *f1 = new TF1("fit_function", fit_function, -0.1, 1, 1);
+	TF1 *f1 = new TF1("fit_function", fit_function, 0, 1, 1);
 	smeared->Fit("fit_function");
 
 	//Print parameter on screen:
