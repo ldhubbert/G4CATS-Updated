@@ -2,7 +2,7 @@
 #include <TF1.h>
 #include <TAxis.h>
 
-//This code has the rearranged equation for t. Nevertheless, this code should produce the same information as that of the t_graph_og_equation.C file
+//This code contains the standard formula for t. Nevertheless, it should produce the same information as that of t_graph.C
 Double_t t_graph(Double_t *x)
 {
 	//x[0] represents theta
@@ -10,8 +10,9 @@ Double_t t_graph(Double_t *x)
 	//Two parameters
 	Double_t initial_energy = 1000;
 	Double_t mass_proton = 938.27208816;
+	Double_t fraction = initial_energy/(1 + ((initial_energy * (1 - TMath::Cos(x[0])))/mass_proton));
 
-	Double_t t = (-2 * initial_energy * initial_energy * mass_proton * (1 - TMath::Cos(x[0]))) / (mass_proton + (initial_energy * (1 - TMath::Cos(x[0]))));
+	Double_t t = (-2 * initial_energy * fraction * (1 - TMath::Cos(x[0])));
 	return t;
 }
 
