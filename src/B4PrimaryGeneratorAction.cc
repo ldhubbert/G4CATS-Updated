@@ -52,10 +52,10 @@ B4PrimaryGeneratorAction::B4PrimaryGeneratorAction()
   // default particle kinematic
   //
   auto particleDefinition 
-    = G4ParticleTable::GetParticleTable()->FindParticle("e-");
+    = G4ParticleTable::GetParticleTable()->FindParticle("gamma");
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
-  fParticleGun->SetParticleEnergy(50.*MeV);
+  fParticleGun->SetParticleEnergy(500.*MeV);
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -75,7 +75,7 @@ void B4PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   // on DetectorConstruction class we get world volume 
   // from G4LogicalVolumeStore
   //
-  G4double worldZHalfLength = 0.;//was 0
+/*  G4double worldZHalfLength = 0.;//was 0
   auto worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
 
   // Check that the world volume has box shape
@@ -85,7 +85,7 @@ void B4PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
 
   if ( worldBox ) {
-    worldZHalfLength = worldBox->GetZHalfLength();  
+    worldZHalfLength = worldBox->GetZHalfLength();
   }
   else  {
     G4ExceptionDescription msg;
@@ -95,10 +95,10 @@ void B4PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4Exception("B4PrimaryGeneratorAction::GeneratePrimaries()",
       "MyCode0002", JustWarning, msg);
   } 
-  
+*/  
   // Set gun position
-  fParticleGun
-    ->SetParticlePosition(G4ThreeVector(4*cm, 0., -worldZHalfLength));//-worldZHalfLength
+  //fParticleGun->SetParticlePosition(G4ThreeVector(4*cm, 0., -worldZHalfLength));//-worldZHalfLength
+  fParticleGun->SetParticlePosition(G4ThreeVector(0*cm, 0., 0.));
 
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }

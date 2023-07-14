@@ -40,25 +40,25 @@ target_link_libraries(exampleB4c ${Geant4_LIBRARIES})
 # Copy all scripts to the build directory, i.e. the directory in which we
 # build B4c. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
-set(EXAMPLEB4C_SCRIPTS
-	# exampleB4c.out
- exampleB4.in
- gui.mac
- init_vis.mac
- plotHisto.C
- plotNtuple.C
- run1.mac
- run2.mac
- vis.mac
- )
+#set(EXAMPLEB4C_SCRIPTS
+# exampleB4c.out
+# exampleB4.in
+# gui.mac
+# init_vis.mac
+# plotHisto.C
+# plotNtuple.C
+# run1.mac
+# run2.mac
+# vis.mac
+# )
 
- foreach(_script ${EXAMPLEB4C_SCRIPTS})
- configure_file(
- ${PROJECT_SOURCE_DIR}/${_script}
- ${PROJECT_BINARY_DIR}/${_script}
- COPYONLY
- )
- endforeach()
+# foreach(_script ${EXAMPLEB4C_SCRIPTS})
+# configure_file(
+# ${PROJECT_SOURCE_DIR}/${_script}
+# ${PROJECT_BINARY_DIR}/${_script}
+# COPYONLY
+# )
+# endforeach()
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX

@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/laura/Vincent/G4CATS
+CMAKE_SOURCE_DIR = /home/laura/G4CATS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/laura/Vincent/G4CATS/build
+CMAKE_BINARY_DIR = /home/laura/G4CATS/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/exampleB4c.dir/depend.make
@@ -70,116 +70,116 @@ include CMakeFiles/exampleB4c.dir/progress.make
 include CMakeFiles/exampleB4c.dir/flags.make
 
 CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: /home/laura/Vincent/G4CATS/exampleB4c.cc
+CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: /home/laura/G4CATS/exampleB4c.cc
 CMakeFiles/exampleB4c.dir/exampleB4c.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exampleB4c.dir/exampleB4c.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/exampleB4c.cc.o -MF CMakeFiles/exampleB4c.dir/exampleB4c.cc.o.d -o CMakeFiles/exampleB4c.dir/exampleB4c.cc.o -c /home/laura/Vincent/G4CATS/exampleB4c.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/exampleB4c.dir/exampleB4c.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/exampleB4c.cc.o -MF CMakeFiles/exampleB4c.dir/exampleB4c.cc.o.d -o CMakeFiles/exampleB4c.dir/exampleB4c.cc.o -c /home/laura/G4CATS/exampleB4c.cc
 
 CMakeFiles/exampleB4c.dir/exampleB4c.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/exampleB4c.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/exampleB4c.cc > CMakeFiles/exampleB4c.dir/exampleB4c.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/exampleB4c.cc > CMakeFiles/exampleB4c.dir/exampleB4c.cc.i
 
 CMakeFiles/exampleB4c.dir/exampleB4c.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/exampleB4c.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/exampleB4c.cc -o CMakeFiles/exampleB4c.dir/exampleB4c.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/exampleB4c.cc -o CMakeFiles/exampleB4c.dir/exampleB4c.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o: /home/laura/Vincent/G4CATS/src/B4PrimaryGeneratorAction.cc
+CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o: /home/laura/G4CATS/src/B4PrimaryGeneratorAction.cc
 CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o -c /home/laura/Vincent/G4CATS/src/B4PrimaryGeneratorAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o -c /home/laura/G4CATS/src/B4PrimaryGeneratorAction.cc
 
 CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4PrimaryGeneratorAction.cc > CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4PrimaryGeneratorAction.cc > CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4PrimaryGeneratorAction.cc -o CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4PrimaryGeneratorAction.cc -o CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o: /home/laura/Vincent/G4CATS/src/B4RunAction.cc
+CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o: /home/laura/G4CATS/src/B4RunAction.cc
 CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o -c /home/laura/Vincent/G4CATS/src/B4RunAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.o -c /home/laura/G4CATS/src/B4RunAction.cc
 
 CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4RunAction.cc > CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4RunAction.cc > CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4RunAction.cc -o CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4RunAction.cc -o CMakeFiles/exampleB4c.dir/src/B4RunAction.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o: /home/laura/Vincent/G4CATS/src/B4cActionInitialization.cc
+CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o: /home/laura/G4CATS/src/B4cActionInitialization.cc
 CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o -c /home/laura/Vincent/G4CATS/src/B4cActionInitialization.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.o -c /home/laura/G4CATS/src/B4cActionInitialization.cc
 
 CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4cActionInitialization.cc > CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4cActionInitialization.cc > CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4cActionInitialization.cc -o CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4cActionInitialization.cc -o CMakeFiles/exampleB4c.dir/src/B4cActionInitialization.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o: /home/laura/Vincent/G4CATS/src/B4cCalorHit.cc
+CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o: /home/laura/G4CATS/src/B4cCalorHit.cc
 CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o -c /home/laura/Vincent/G4CATS/src/B4cCalorHit.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.o -c /home/laura/G4CATS/src/B4cCalorHit.cc
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4cCalorHit.cc > CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4cCalorHit.cc > CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4cCalorHit.cc -o CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4cCalorHit.cc -o CMakeFiles/exampleB4c.dir/src/B4cCalorHit.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o: /home/laura/Vincent/G4CATS/src/B4cCalorimeterSD.cc
+CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o: /home/laura/G4CATS/src/B4cCalorimeterSD.cc
 CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o -c /home/laura/Vincent/G4CATS/src/B4cCalorimeterSD.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.o -c /home/laura/G4CATS/src/B4cCalorimeterSD.cc
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4cCalorimeterSD.cc > CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4cCalorimeterSD.cc > CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4cCalorimeterSD.cc -o CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4cCalorimeterSD.cc -o CMakeFiles/exampleB4c.dir/src/B4cCalorimeterSD.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: /home/laura/Vincent/G4CATS/src/B4cDetectorConstruction.cc
+CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: /home/laura/G4CATS/src/B4cDetectorConstruction.cc
 CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o -c /home/laura/Vincent/G4CATS/src/B4cDetectorConstruction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.o -c /home/laura/G4CATS/src/B4cDetectorConstruction.cc
 
 CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4cDetectorConstruction.cc > CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4cDetectorConstruction.cc > CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4cDetectorConstruction.cc -o CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4cDetectorConstruction.cc -o CMakeFiles/exampleB4c.dir/src/B4cDetectorConstruction.cc.s
 
 CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o: CMakeFiles/exampleB4c.dir/flags.make
-CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o: /home/laura/Vincent/G4CATS/src/B4cEventAction.cc
+CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o: /home/laura/G4CATS/src/B4cEventAction.cc
 CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o: CMakeFiles/exampleB4c.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o -c /home/laura/Vincent/G4CATS/src/B4cEventAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o -MF CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o.d -o CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.o -c /home/laura/G4CATS/src/B4cEventAction.cc
 
 CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.i"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/Vincent/G4CATS/src/B4cEventAction.cc > CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.i
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/laura/G4CATS/src/B4cEventAction.cc > CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.i
 
 CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.s"
-	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/Vincent/G4CATS/src/B4cEventAction.cc -o CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.s
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/laura/G4CATS/src/B4cEventAction.cc -o CMakeFiles/exampleB4c.dir/src/B4cEventAction.cc.s
 
 # Object files for target exampleB4c
 exampleB4c_OBJECTS = \
@@ -251,7 +251,7 @@ exampleB4c: /opt/geant4_v10.5.1/lib64/libG4intercoms.so
 exampleB4c: /opt/geant4_v10.5.1/lib64/libG4global.so
 exampleB4c: /opt/geant4_v10.5.1/lib64/libG4clhep.so
 exampleB4c: CMakeFiles/exampleB4c.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/laura/Vincent/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable exampleB4c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/laura/G4CATS/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable exampleB4c"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exampleB4c.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -263,6 +263,6 @@ CMakeFiles/exampleB4c.dir/clean:
 .PHONY : CMakeFiles/exampleB4c.dir/clean
 
 CMakeFiles/exampleB4c.dir/depend:
-	cd /home/laura/Vincent/G4CATS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/laura/Vincent/G4CATS /home/laura/Vincent/G4CATS /home/laura/Vincent/G4CATS/build /home/laura/Vincent/G4CATS/build /home/laura/Vincent/G4CATS/build/CMakeFiles/exampleB4c.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/laura/G4CATS/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/laura/G4CATS /home/laura/G4CATS /home/laura/G4CATS/build /home/laura/G4CATS/build /home/laura/G4CATS/build/CMakeFiles/exampleB4c.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/exampleB4c.dir/depend
 

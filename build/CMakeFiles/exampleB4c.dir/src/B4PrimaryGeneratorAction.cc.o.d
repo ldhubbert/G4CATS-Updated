@@ -1,7 +1,7 @@
 CMakeFiles/exampleB4c.dir/src/B4PrimaryGeneratorAction.cc.o: \
- /home/laura/Vincent/G4CATS/src/B4PrimaryGeneratorAction.cc \
+ /home/laura/G4CATS/src/B4PrimaryGeneratorAction.cc \
  /usr/include/stdc-predef.h \
- /home/laura/Vincent/G4CATS/include/B4PrimaryGeneratorAction.hh \
+ /home/laura/G4CATS/include/B4PrimaryGeneratorAction.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
  /opt/geant4_v10.5.1/include/Geant4/globals.hh \
  /opt/geant4_v10.5.1/include/Geant4/G4ios.hh \

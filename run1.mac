@@ -20,9 +20,9 @@
 # muon 300 MeV in direction (0.,0.,1.)
 # 3 events
 #
-/gun/particle gamma
-/gun/direction 0 0 1
-/gun/energy 100 MeV
+# /gun/particle gamma ////////////////////////following three defined in src code PrimaryGeneratorAction class
+# /gun/direction 0 0 1 //////////////////////////
+# /gun/energy 100 MeV //////////////////////
 /run/beamOn 100000
 #
 # 20 events
