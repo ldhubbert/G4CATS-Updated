@@ -12,7 +12,7 @@ Double_t MyMethod(Double_t *x, Double_t *par)
 
 }
 
-void maincode()
+void skew()
 {
 	//Normal Histogram Stuff
 	//gStyle->SetOptTitle(1);

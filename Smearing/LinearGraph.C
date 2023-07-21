@@ -2,7 +2,7 @@
 #include <TCanvas.h>
 #include <TGraph2D.h>
 #include <TStyle.h>
-void maincode()
+void LinearGraph()
 {
 	//Code From 100MeV Smear
 	//Gaussian and Filling Histogram
@@ -452,13 +452,19 @@ void maincode()
 	z_values[3] = 13;
 	z_values[4] = 15;
 
-	TGraph2D *g1 = new TGraph2D(array_size, x_values, y_values, z_values);
-	g1->SetTitle("Smearing factor for FWHM of various Energy Levels");
-	g1->GetXaxis()->SetTitle("Energy (in MeV)");
-	g1->GetYaxis()->SetTitle("FWHM (in % of incident energy)");
-	g1->GetZaxis()->SetTitle("Percentage");
-	gStyle->SetPalette(1);
 
+	TGraph2D *g1 = new TGraph2D();
+	g1->SetTitle("Smearing factor for FWHM of various Energy Levels; Energy (in MeV); FWHM (in % of incident energy); Smearing Percentage");
+
+	for (int i = 0; i <= 5; i++)
+	{
+		double x = x_values[i];
+		double y = y_values[i];
+		double z = z_values[i];
+		g1->SetPoint(i, x, y, z);
+	}
+
+	gStyle->SetPalette(1);
 	g1->Draw();
 
 

@@ -1,7 +1,7 @@
 #include "TF1.h"
 #include "TMath.h"
 #include "TTreeReader.h"
-void H100MeVsmearM.C()
+void H200MeVsmearM()
 {
 	//Create a canvas and divide it into 2 pads
 	TCanvas* c1 = new TCanvas("c1", "", 20, 20, 1000, 1000);
